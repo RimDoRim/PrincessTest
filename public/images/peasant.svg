@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 220" width="200" height="220">
+  <defs>
+    <filter id="w">
+      <feTurbulence type="turbulence" baseFrequency="0.032" numOctaves="2" seed="7" result="noise"/>
+      <feDisplacementMap in="SourceGraphic" in2="noise" scale="4" xChannelSelector="R" yChannelSelector="G"/>
+    </filter>
+  </defs>
+  <rect width="200" height="220" fill="#F5F5E8" rx="18"/>
+  <!-- Hat (bucket hat style, slightly wonky) -->
+  <ellipse cx="100" cy="68" rx="55" ry="12" fill="#8B7355" stroke="#6B5335" stroke-width="3" filter="url(#w)"/>
+  <path d="M68 68 Q65 45 100 42 Q135 45 132 68Z" fill="#A0845A" stroke="#6B5335" stroke-width="3" filter="url(#w)"/>
+  <!-- Head -->
+  <ellipse cx="100" cy="112" rx="50" ry="48" fill="#FFDAB9" stroke="#D2855A" stroke-width="5" filter="url(#w)"/>
+  <!-- Hair peeking out -->
+  <ellipse cx="51" cy="112" rx="12" ry="26" fill="#8B4513" filter="url(#w)"/>
+  <ellipse cx="149" cy="112" rx="12" ry="26" fill="#8B4513" filter="url(#w)"/>
+  <!-- Eyes (slightly tired) -->
+  <ellipse cx="83" cy="108" rx="9" ry="9" fill="#333" filter="url(#w)"/>
+  <ellipse cx="117" cy="108" rx="9" ry="9" fill="#333" filter="url(#w)"/>
+  <circle cx="86" cy="105" r="3" fill="white"/>
+  <circle cx="120" cy="105" r="3" fill="white"/>
+  <!-- Small smile (content but not excited) -->
+  <path d="M85 130 Q100 143 115 130" stroke="#C05A2A" stroke-width="4" fill="none" stroke-linecap="round" filter="url(#w)"/>
+  <!-- Body (practical outfit) -->
+  <path d="M63 158 Q60 198 50 215 L150 215 Q140 198 137 158 Q120 165 100 165 Q80 165 63 158Z" fill="#A0C878" stroke="#7AA050" stroke-width="3" filter="url(#w)"/>
+  <!-- Pocket -->
+  <rect x="75" y="175" width="22" height="18" rx="4" fill="none" stroke="#7AA050" stroke-width="3" filter="url(#w)"/>
+  <text x="20" y="195" font-size="18" filter="url(#w)">🪴</text>
+  <text x="158" y="195" font-size="18" filter="url(#w)">💪</text>
+</svg>

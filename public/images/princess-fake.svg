@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 220" width="200" height="220">
+  <defs>
+    <filter id="w">
+      <feTurbulence type="turbulence" baseFrequency="0.035" numOctaves="2" seed="9" result="noise"/>
+      <feDisplacementMap in="SourceGraphic" in2="noise" scale="4" xChannelSelector="R" yChannelSelector="G"/>
+    </filter>
+  </defs>
+  <rect width="200" height="220" fill="#F8E8FF" rx="18"/>
+  <!-- Small tiara -->
+  <path d="M75,75 L85,55 L100,65 L115,55 L125,75" stroke="#B57BFF" stroke-width="5" fill="none" stroke-linejoin="round" stroke-linecap="round" filter="url(#w)"/>
+  <circle cx="85" cy="55" r="5" fill="#FF8DC7" filter="url(#w)"/>
+  <circle cx="100" cy="65" r="5" fill="#FFD700" filter="url(#w)"/>
+  <circle cx="115" cy="55" r="5" fill="#FF8DC7" filter="url(#w)"/>
+  <!-- Head -->
+  <ellipse cx="100" cy="120" rx="51" ry="48" fill="#FFDAB9" stroke="#D2855A" stroke-width="5" filter="url(#w)"/>
+  <!-- Hair -->
+  <ellipse cx="100" cy="83" rx="51" ry="22" fill="#C96CC9" filter="url(#w)"/>
+  <ellipse cx="52" cy="122" rx="13" ry="28" fill="#C96CC9" filter="url(#w)"/>
+  <ellipse cx="148" cy="122" rx="13" ry="28" fill="#C96CC9" filter="url(#w)"/>
+  <!-- Eyes -->
+  <ellipse cx="83" cy="117" rx="9" ry="10" fill="#222" filter="url(#w)"/>
+  <ellipse cx="117" cy="117" rx="9" ry="10" fill="#222" filter="url(#w)"/>
+  <circle cx="86" cy="114" r="3" fill="white"/>
+  <circle cx="120" cy="114" r="3" fill="white"/>
+  <!-- Blush -->
+  <ellipse cx="70" cy="132" rx="12" ry="8" fill="#FFB6C1" opacity="0.6" filter="url(#w)"/>
+  <ellipse cx="130" cy="132" rx="12" ry="8" fill="#FFB6C1" opacity="0.6" filter="url(#w)"/>
+  <!-- Smile -->
+  <path d="M82 142 Q100 160 118 142" stroke="#C05A2A" stroke-width="4" fill="none" stroke-linecap="round" filter="url(#w)"/>
+  <!-- Dress -->
+  <path d="M62 167 Q58 200 48 215 L152 215 Q142 200 138 167 Q120 175 100 175 Q80 175 62 167Z" fill="#B57BFF" stroke="#8A4FCC" stroke-width="3" filter="url(#w)"/>
+  <!-- Bow -->
+  <path d="M88 175 L80 168 L88 162 M112 175 L120 168 L112 162" stroke="#FF8DC7" stroke-width="4" fill="none" stroke-linecap="round" filter="url(#w)"/>
+  <circle cx="100" cy="168" r="5" fill="#FF8DC7" filter="url(#w)"/>
+  <text x="20" y="48" font-size="18" filter="url(#w)">🎀</text>
+  <text x="158" y="48" font-size="18" filter="url(#w)">💜</text>
+</svg>

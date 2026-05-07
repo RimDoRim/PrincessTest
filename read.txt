@@ -1,0 +1,182 @@
+Vue3 + Vite 기반 "공주 테스트" 웹사이트를 만들어줘.
+
+## 서비스 개요
+사용자 이름을 입력받고, 최근 유행하는 트렌드에 관한 8개 질문에
+1~5점으로 답변하면 총점에 따라 5단계 등급을 보여주는 심리 테스트.
+일부 문항은 역점수 처리가 필요하다.
+
+⭐ 핵심 이스터에그: 이름이 정확히 "김민정"이면
+   점수와 무관하게 무조건 "진짜 공주님" 등급이 나와야 한다.
+   이 로직은 절대 우회되거나 노출되면 안 됨.
+
+## 기술 스택
+- Vue 3 (Composition API, <script setup> 방식)
+- Vite (빌드 도구)
+- JavaScript ES6+
+- Bootstrap 5 (CDN)
+- Font Awesome 6 (CDN)
+- Pinia (상태 관리)
+- Vue Router 4
+
+## 프로젝트 구조
+src/
+├── main.js
+├── App.vue
+├── router/index.js
+├── stores/
+│   └── quizStore.js
+├── views/
+│   ├── Home.vue
+│   ├── Quiz.vue
+│   └── Result.vue
+└── components/
+    ├── QuestionCard.vue
+    └── ResultCard.vue
+
+public/
+└── images/
+    ├── princess-real.png    ← "진짜 공주님" 이미지 (placeholder)
+    ├── princess-fake.png    ← "무언가 부족한 공주님" 이미지 (placeholder)
+    ├── commoner.png         ← "평민" 이미지 (placeholder)
+    ├── peasant.png          ← "서민" 이미지 (placeholder)
+    └── servant.png          ← "하녀" 이미지 (placeholder)
+
+## 8개 질문 목록 (반드시 아래 내용 그대로 사용)
+const questions = [
+  { id: 1, text: "친구와 만났을 때, 음식이 식더라도 완벽한 'MZ 구도'의 사진이 나올 때까지 젓가락을 들지 못하게 하는 편이다.", isReverse: false },
+  { id: 2, text: "집 앞 편의점에 가더라도 '누군가 나를 볼 수 있다'는 생각에 최소한의 톤업 크림과 착장 셋업은 갖춰야 마음이 편하다.", isReverse: false },
+  { id: 3, text: "길을 걷다 우연히 쇼윈도나 전신거울을 마주치면, '오늘 내 착장 좀 완벽한데?' 하며 속으로 런웨이를 걷는 상상을 한 적이 꽤 많다.", isReverse: false },
+  { id: 4, text: "아무리 들어갈 짐이 없어도 코디를 위해 불편한 마이크로 미니백을 메고, 거기에 비싼 인형 키링(백꾸)을 주렁주렁 다는 건 절대 포기할 수 없는 패션 철학이다.", isReverse: false },
+  { id: 5, text: "웨이팅이 길어도 두쫀쿠처럼 '지금 유행하는 것'을 위해서라면 내 지갑은 언제든 열릴 준비가 되어 있다.", isReverse: false },
+  { id: 6, text: "야심 차게 꾸미고 나간 날, 주변에서 '오늘 옷 예쁘다' 또는 '이거 어디서 샀어?'라는 질문을 받지 못하면 집에 돌아오는 길에 은근히 서운함을 느낀다.", isReverse: false },
+  { id: 7, text: "인스타 감성 낭낭한 '등받이 없고 딱딱한 의자'가 있는 핫플보다는, 푹신한 소파와 빵빵한 와이파이가 있는 대형 프랜차이즈 카페가 솔직히 훨씬 좋다.", isReverse: true },
+  { id: 8, text: "친구나 남자친구한테 하루에 보내는 릴스가 5개 미만이다.", isReverse: true }
+];
+
+## 점수 계산 방식 (중요 - 반드시 이 로직 사용)
+- isReverse: false → 선택값 그대로 점수 (1~5)
+- isReverse: true  → 역산 처리: 실제점수 = 6 - 선택값
+  (예: 5 선택 → 1점, 1 선택 → 5점)
+- totalScore = 8개 문항 실제점수 합산 (최소 8점, 최대 40점)
+
+## 등급 판별 로직 (반드시 이 코드 그대로 사용)
+const getResultGrade = computed(() => {
+  // 1순위: 이스터에그 (점수 무시, 무조건 진짜 공주님)
+  if (userName.value === '김민정') return '진짜 공주님';
+  // 2순위: 점수에 따른 등급 판별
+  const score = totalScore.value;
+  if (score >= 43) return '진짜 공주님';       // 최대 40점으로 물리적 불가 (이스터에그 전용 구간)
+  if (score >= 33) return '무언가 부족한 공주님';
+  if (score >= 25) return '평민';
+  if (score >= 17) return '서민';
+  return '하녀';
+});
+
+## 등급별 설명 및 이미지 매핑
+const resultDescriptions = {
+  '진짜 공주님': {
+    image: '/images/princess-real.png',
+    emoji: '👑',
+    color: '#FFD700',
+    description: "숨만 쉬어도 도파민이 터지는 본투비 로열티. 뼛속까지 핫걸인 당신, 혹시 '그' 민정 공주님이신가요? 👑✨"
+  },
+  '무언가 부족한 공주님': {
+    image: '/images/princess-fake.png',
+    emoji: '🎀',
+    color: '#B57BFF',
+    description: "머리부터 발끝까지 완벽한 세팅! 하지만 마지막 결제창 배송비 3천 원에 가끔 이성이 돌아오는 당신은 '노력형' 공주네요. 🎀😏"
+  },
+  '평민': {
+    image: '/images/commoner.png',
+    emoji: '🌿',
+    color: '#6BCB77',
+    description: "트렌드 탑승은 적당히, 내 지갑 사정도 적당히. 갓생과 폼생폼사 사이에서 완벽한 줄타기를 하는 프로 현실러. 나쁘지 않아요, 진짜로요. 🌿😎"
+  },
+  '서민': {
+    image: '/images/peasant.png',
+    emoji: '🪴',
+    color: '#A0C878',
+    description: "예쁜 쓰레기보단 실용성이 최고! 낭만보다는 가성비를 챙기는 당신, 상남자 매력 철철 넘치는 명예 '테토녀' 되기에 충분합니다. 🪴💪"
+  },
+  '하녀': {
+    image: '/images/servant.png',
+    emoji: '🧹',
+    color: '#AAAAAA',
+    description: "도파민? 백꾸? 그게 다 무어란 말이냐. 속세의 허영심을 버리고 묵묵히 제 갈 길을 가는 진정한 K-일개미. 공주님들 모시느라 고생이 많습니다! 🧹💦"
+  }
+};
+
+## 필수 구현 내용
+
+### stores/quizStore.js (Pinia Composition API 방식)
+- userName (string) 상태
+- answers (배열, 8개 문항의 선택값 저장)
+- totalScore: computed → isReverse 여부에 따라 점수 계산
+  questions[i].isReverse ? 6 - answers[i] : answers[i] 로 합산
+- getResultGrade: computed → 위 등급 판별 로직 그대로 사용
+- computeResult(): getResultGrade 값으로 resultDescriptions 조회 → result 에 저장
+- result 상태: { grade, description, image, emoji, color }
+- resetQuiz(): userName, answers, result 초기화
+
+### Home.vue (1단계: 이름 입력)
+- 전체 화면 세로 중앙 정렬
+- 👑 + "나는 어떤 공주일까?" 타이틀 (큰 폰트)
+- 부제목: "솔직하게 답해야 진짜 결과가 나옵니다 👀"
+- 이름 입력 input (placeholder: "이름을 입력하세요", 둥근 테두리)
+- "테스트 시작하기" 버튼 → /quiz 이동
+- trim() 후 빈 문자열이면 버튼 비활성화 + 회색 처리
+- quizStore.userName에 입력값 저장 후 라우팅
+
+### Quiz.vue (2단계: 질문)
+- 한 번에 질문 1개씩 (슬라이드 방식)
+- 상단: Bootstrap progress bar + "3 / 8" 텍스트
+- QuestionCard 컴포넌트에 현재 질문 text 전달
+- 선택지 5개 버튼:
+  1️⃣ 전혀 아니다
+  2️⃣ 아니다
+  3️⃣ 보통이다
+  4️⃣ 그렇다
+  5️⃣ 매우 그렇다
+- 선택 시 answers에 선택값(1~5) push → 자동으로 다음 질문 이동
+- 질문 전환 시 Vue <Transition> 페이드 효과
+- 8번 완료 시 computeResult() 호출 → /result 이동
+- 브라우저 뒤로가기 방지 (popstate 이벤트 차단)
+- userName 없으면 /home 리다이렉트
+
+### Result.vue (3단계: 결과)
+- ResultCard 컴포넌트 사용
+- 등급 이미지 중앙 표시 (width: 200px, border-radius: 50%)
+  → onerror 시 emoji 폴백
+- 등급명 크게 표시 (예: 👑 진짜 공주님)
+- 등급별 설명 텍스트
+- "다시 하기" 버튼 → resetQuiz() 후 /home
+- "결과 공유하기" 버튼: 클립보드 복사
+  형식: "[이름]님의 공주 테스트 결과: [등급명]!\n[설명]\n👉 테스트 해보기: (URL)"
+  복사 완료 시 버튼 텍스트 "✅ 복사됨!" 으로 1.5초 후 원복
+- "진짜 공주님" 카드: 골드(#FFD700) 테두리 2px + 별 반짝이 CSS 애니메이션
+
+## 디자인 가이드
+- 전체 컨셉: MZ 트렌디 + 심플 모던
+- 폰트: Noto Sans KR (Google Fonts CDN)
+- 컬러:
+  - 포인트: #B57BFF (라벤더 퍼플)
+  - 서브: #FFD6F0 (라이트 핑크)
+  - 배경: #FAFAFA (오프화이트)
+  - 텍스트: #1A1A1A
+- 버튼: border-radius: 999px, background: linear-gradient(135deg, #B57BFF, #FF8DC7)
+- 카드: background: #fff, box-shadow: 0 4px 20px rgba(0,0,0,0.08), border-radius: 20px
+- 선택지 버튼 hover 시 보라색 배경 + 흰 글자
+- 최대 너비 480px, 모바일 우선 반응형
+
+## 기타 조건
+- trim() 후 "김민정" 비교 (콘솔 로그나 주석으로 절대 노출 금지)
+- App.vue는 <RouterView /> 만 렌더링
+- main.js에서 Pinia → Router 순서로 app.use() 등록
+- public/images/ 경로 상단에 파일명 주석 명시
+
+
+그림은 내가 첨부한 이미지를 이제 갓 세네살 된 아기가 크레파스로 뭘 그리려고 한건지 알듯 모를듯 하게 
+못그리고 엉망인 그림체로 그린 그림으로 바꿔줘. 묘사와 구도가 너무 어른스러우면 안되고 아이가 인식하듯 엉뚱하면 좋겠어.
+이 프롬포트 느낌을 사용하고싶어
+
+이것을 이제 깃에 올리고 배포할것임

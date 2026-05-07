@@ -1,0 +1,143 @@
+* {
+  font-family: 'Noto Sans KR', sans-serif;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #FAFAFA;
+  color: #1A1A1A;
+  min-height: 100vh;
+  margin: 0;
+}
+
+.main-wrapper {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.princess-card {
+  background: #fff;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  border-radius: 20px;
+  width: 100%;
+  max-width: 480px;
+  padding: 2rem;
+}
+
+.btn-princess {
+  background: linear-gradient(135deg, #B57BFF, #FF8DC7);
+  color: white;
+  border: none;
+  border-radius: 999px;
+  padding: 0.75rem 1.5rem;
+  font-weight: 700;
+  font-size: 1rem;
+  transition: all 0.2s;
+  cursor: pointer;
+}
+
+.btn-princess:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(181, 123, 255, 0.4);
+  color: white;
+}
+
+.btn-princess:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+  color: #fff;
+}
+
+.btn-secondary-princess {
+  background: transparent;
+  color: #B57BFF;
+  border: 2px solid #B57BFF;
+  border-radius: 999px;
+  padding: 0.75rem 1.5rem;
+  font-weight: 700;
+  font-size: 1rem;
+  transition: all 0.2s;
+  cursor: pointer;
+}
+
+.btn-secondary-princess:hover {
+  background: #B57BFF;
+  color: white;
+}
+
+.name-input {
+  border-radius: 12px;
+  border: 2px solid #FFD6F0;
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+  transition: border-color 0.2s;
+  width: 100%;
+  outline: none;
+}
+
+.name-input:focus {
+  border-color: #B57BFF;
+  box-shadow: 0 0 0 3px rgba(181, 123, 255, 0.15);
+}
+
+.answer-btn {
+  background: #fff;
+  border: 2px solid #FFD6F0;
+  border-radius: 12px;
+  padding: 0.75rem 1rem;
+  font-size: 0.95rem;
+  text-align: left;
+  transition: all 0.2s;
+  width: 100%;
+  margin-bottom: 0.5rem;
+  cursor: pointer;
+  color: #1A1A1A;
+  display: block;
+}
+
+.answer-btn:hover {
+  background: #B57BFF;
+  border-color: #B57BFF;
+  color: white;
+}
+
+.progress-custom {
+  background: #FFD6F0;
+  border-radius: 999px;
+  height: 8px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(135deg, #B57BFF, #FF8DC7);
+  border-radius: 999px;
+  transition: width 0.4s ease;
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.25s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
+
+.gold-card {
+  border: 2px solid #FFD700 !important;
+  animation: sparkle 1.5s ease-in-out infinite alternate;
+}
+
+@keyframes sparkle {
+  0% {
+    box-shadow: 0 4px 20px rgba(255, 215, 0, 0.3);
+  }
+  100% {
+    box-shadow: 0 8px 40px rgba(255, 215, 0, 0.7), 0 0 60px rgba(255, 215, 0, 0.25);
+  }
+}

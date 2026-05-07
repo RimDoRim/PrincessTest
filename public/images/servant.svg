@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 220" width="200" height="220">
+  <defs>
+    <filter id="w">
+      <feTurbulence type="turbulence" baseFrequency="0.032" numOctaves="2" seed="11" result="noise"/>
+      <feDisplacementMap in="SourceGraphic" in2="noise" scale="4" xChannelSelector="R" yChannelSelector="G"/>
+    </filter>
+  </defs>
+  <rect width="200" height="220" fill="#F0F0F0" rx="18"/>
+  <!-- Head -->
+  <ellipse cx="90" cy="105" rx="49" ry="47" fill="#FFDAB9" stroke="#D2855A" stroke-width="5" filter="url(#w)"/>
+  <!-- Hair (pulled back, messy) -->
+  <ellipse cx="90" cy="68" rx="49" ry="20" fill="#555" filter="url(#w)"/>
+  <ellipse cx="43" cy="105" rx="11" ry="26" fill="#555" filter="url(#w)"/>
+  <!-- Small bun -->
+  <ellipse cx="130" cy="65" rx="14" ry="13" fill="#555" filter="url(#w)"/>
+  <!-- Eyes (tired/droopy) -->
+  <ellipse cx="76" cy="103" rx="8" ry="9" fill="#333" filter="url(#w)"/>
+  <ellipse cx="106" cy="103" rx="8" ry="9" fill="#333" filter="url(#w)"/>
+  <circle cx="79" cy="100" r="2.5" fill="white"/>
+  <circle cx="109" cy="100" r="2.5" fill="white"/>
+  <!-- Tired brow -->
+  <path d="M68 90 Q76 87 84 90" stroke="#555" stroke-width="3" fill="none" stroke-linecap="round" filter="url(#w)"/>
+  <path d="M98 90 Q106 87 114 90" stroke="#555" stroke-width="3" fill="none" stroke-linecap="round" filter="url(#w)"/>
+  <!-- Neutral mouth -->
+  <path d="M78 125 Q90 133 104 125" stroke="#C05A2A" stroke-width="3.5" fill="none" stroke-linecap="round" filter="url(#w)"/>
+  <!-- Body (plain outfit) -->
+  <path d="M52 150 Q48 192 38 215 L150 215 Q145 200 138 168 Q120 158 100 158 Q78 158 52 150Z" fill="#AAAAAA" stroke="#888" stroke-width="3" filter="url(#w)"/>
+  <!-- Apron -->
+  <path d="M72 155 Q68 195 62 215 L125 215 Q120 195 118 158 Q100 165 72 155Z" fill="white" stroke="#ccc" stroke-width="2" filter="url(#w)"/>
+  <!-- Broom (held to the side) -->
+  <line x1="152" y1="75" x2="168" y2="215" stroke="#8B7355" stroke-width="5" stroke-linecap="round" filter="url(#w)"/>
+  <ellipse cx="162" cy="210" rx="18" ry="8" fill="#8B7355" filter="url(#w)"/>
+  <!-- Sweat drop -->
+  <path d="M140 80 Q143 74 140 70 Q137 74 140 80Z" fill="#88CCFF" filter="url(#w)"/>
+  <text x="18" y="50" font-size="18" filter="url(#w)">🧹</text>
+  <text x="18" y="195" font-size="16" filter="url(#w)">💦</text>
+</svg>

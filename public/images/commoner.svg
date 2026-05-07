@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 220" width="200" height="220">
+  <defs>
+    <filter id="w">
+      <feTurbulence type="turbulence" baseFrequency="0.03" numOctaves="2" seed="13" result="noise"/>
+      <feDisplacementMap in="SourceGraphic" in2="noise" scale="4" xChannelSelector="R" yChannelSelector="G"/>
+    </filter>
+  </defs>
+  <rect width="200" height="220" fill="#EFFFEF" rx="18"/>
+  <!-- Head -->
+  <ellipse cx="100" cy="108" rx="52" ry="50" fill="#FFDAB9" stroke="#D2855A" stroke-width="5" filter="url(#w)"/>
+  <!-- Hair -->
+  <ellipse cx="100" cy="70" rx="52" ry="22" fill="#8B4513" filter="url(#w)"/>
+  <ellipse cx="51" cy="108" rx="14" ry="28" fill="#8B4513" filter="url(#w)"/>
+  <ellipse cx="149" cy="108" rx="14" ry="28" fill="#8B4513" filter="url(#w)"/>
+  <!-- Eyes -->
+  <ellipse cx="83" cy="105" rx="9" ry="10" fill="#333" filter="url(#w)"/>
+  <ellipse cx="117" cy="105" rx="9" ry="10" fill="#333" filter="url(#w)"/>
+  <circle cx="86" cy="102" r="3" fill="white"/>
+  <circle cx="120" cy="102" r="3" fill="white"/>
+  <!-- Cheeks -->
+  <ellipse cx="70" cy="120" rx="12" ry="8" fill="#FFB6C1" opacity="0.5" filter="url(#w)"/>
+  <ellipse cx="130" cy="120" rx="12" ry="8" fill="#FFB6C1" opacity="0.5" filter="url(#w)"/>
+  <!-- Smile -->
+  <path d="M82 130 Q100 148 118 130" stroke="#C05A2A" stroke-width="4" fill="none" stroke-linecap="round" filter="url(#w)"/>
+  <!-- Body (casual outfit) -->
+  <path d="M62 155 Q58 195 50 215 L150 215 Q142 195 138 155 Q120 163 100 163 Q80 163 62 155Z" fill="#6BCB77" stroke="#4A9955" stroke-width="3" filter="url(#w)"/>
+  <!-- Simple neckline -->
+  <path d="M85 155 Q100 165 115 155" stroke="#4A9955" stroke-width="3" fill="none" stroke-linecap="round" filter="url(#w)"/>
+  <text x="22" y="48" font-size="20" filter="url(#w)">🌿</text>
+  <text x="155" y="48" font-size="20" filter="url(#w)">😎</text>
+  <text x="22" y="195" font-size="16" filter="url(#w)">✌️</text>
+</svg>
